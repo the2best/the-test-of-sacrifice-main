@@ -318,7 +318,7 @@ tile_set = SubResource("TileSet_7jktm")
 position = Vector2(1419, -24)
 
 [node name="platform7" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(1441, 105)
+position = Vector2(1442, 106)
 
 [node name="platform2" parent="." instance=ExtResource("6_ryrav")]
 position = Vector2(170, -26)
@@ -333,25 +333,25 @@ libraries = {
 autoplay = "move"
 
 [node name="platform5" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(1473, 8)
+position = Vector2(1469, 9)
 
 [node name="platform4" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(1441, 8)
+position = Vector2(1435, 9)
 
 [node name="platform8" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(1473, 105)
+position = Vector2(1475, 107)
 
 [node name="platform9" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(1441, 73)
+position = Vector2(1439, 74)
 
 [node name="platform10" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(1473, 73)
+position = Vector2(1474, 74)
 
 [node name="platform11" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(1441, 40)
+position = Vector2(1436, 41)
 
 [node name="platform12" parent="." instance=ExtResource("6_ryrav")]
-position = Vector2(1473, 40)
+position = Vector2(1470, 41)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -84.0
