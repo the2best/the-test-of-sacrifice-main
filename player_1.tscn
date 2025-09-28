@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://bf1dr1d8byhtb"]
+
+[ext_resource type="Texture2D" uid="uid://cbrv4onfmfffn" path="res://assets/sprites/slime_green.png" id="2_qh3su"]
+
+[sub_resource type="GDScript" id="GDScript_squ5q"]
+script/source = "extends CharacterBody2D
+
+
+var SPEED = 100.0
+var JUMP_VELOCITY = -300.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"right\", \"left\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	move_and_slide()
+
+
+func _on_killzone_body_entered(body):
+	body.position= %respawnpoint.position
+	
+	
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxx23"]
+atlas = ExtResource("2_qh3su")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh3su"]
+atlas = ExtResource("2_qh3su")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buxg0"]
+atlas = ExtResource("2_qh3su")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6736r"]
+atlas = ExtResource("2_qh3su")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i66ns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxx23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh3su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buxg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6736r")
+}],
+"loop": true,
+"name": &"green_idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lq3ur"]
+size = Vector2(10, 13)
+
+[node name="Player_1" type="CharacterBody2D"]
+position = Vector2(0, 1)
+script = SubResource("GDScript_squ5q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_i66ns")
+animation = &"green_idle"
+autoplay = "green_idle"
+frame = 3
+frame_progress = 0.9320224
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_lq3ur")
